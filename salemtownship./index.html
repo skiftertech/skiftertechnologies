@@ -1,0 +1,2793 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salem Township - Where Salem Comes to Life</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'poppins', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    /* Header/Navigation Styles */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(26, 77, 46, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(26, 77, 46, 1);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ffd700;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #ffd700;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .hamburger {
+      width: 30px;
+      height: 3px;
+      background: #ffffff;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger::before,
+    .hamburger::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger::before {
+      top: -8px;
+    }
+
+    .hamburger::after {
+      bottom: -8px;
+    }
+
+    .mobile-menu-toggle.active .hamburger {
+      background: transparent;
+    }
+
+    .mobile-menu-toggle.active .hamburger::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    .mobile-menu-toggle.active .hamburger::after {
+      transform: rotate(-45deg);
+      bottom: 0;
+    }
+
+    .hero-section {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 20px;
+      overflow: hidden;
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+
+    .hero-background svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .headline {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .subheadline {
+      font-size: 1.25rem;
+      color: #e8f5e9;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-container {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #daa43c;
+      color: #1a4d2e;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #ffed4e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      max-height: 90%;
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #666;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1a4d2e;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #1a4d2e;
+    }
+
+    .form-error {
+      color: #d32f2f;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .form-error.active {
+      display: block;
+    }
+
+    .form-success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+
+    .form-success.active {
+      display: block;
+    }
+
+    /* Video Gallery Styles */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-height: 70%;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .video-card {
+      background: #f5f5f5;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: scale(1.02);
+    }
+
+    .video-thumbnail {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: #1a4d2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 215, 0, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a4d2e;
+      font-size: 1.5rem;
+    }
+
+    .video-title {
+      padding: 15px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+    }
+
+    .loading-spinner {
+      display: none;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #ffffff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    .loading-spinner.active {
+      display: block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* About Section Styles */
+    .about-section {
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .about-main-heading {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .about-sub-heading {
+     font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a4d2e;
+    position: relative;
+    display: inline-block;
+    }
+
+    .about-sub-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: #daa43c;
+      border-radius: 2px;
+    }
+
+    .about-content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .about-paragraph {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+      text-align: justify;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .about-paragraph.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .about-paragraph:nth-child(1) {
+      transition-delay: 0.2s;
+    }
+
+    .about-paragraph:nth-child(2) {
+      transition-delay: 0.4s;
+    }
+
+    .about-paragraph:nth-child(3) {
+      transition-delay: 0.6s;
+    }
+
+    .about-paragraph:nth-child(4) {
+      transition-delay: 0.8s;
+    }
+
+    .about-image-content {
+      position: relative;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 1s ease-out;
+    }
+
+    .about-image-content.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .about-image-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #ffd700, #1a4d2e);
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .about-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .about-decorative-element {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: #ffd700;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .about-decorative-element.top-left {
+      top: -50px;
+      left: -50px;
+    }
+
+    .about-decorative-element.bottom-right {
+      bottom: -50px;
+      right: -50px;
+      background: #1a4d2e;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Highlights Section Styles */
+    .highlights-section {
+      background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .highlights-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .highlights-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .highlights-main-heading {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .highlights-sub-heading {
+      font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a4d2e;
+    position: relative;
+    display: inline-block;
+    }
+
+    .highlights-sub-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: #daa43c;
+      border-radius: 2px;
+    }
+
+    .highlights-content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .highlights-image-content {
+      position: relative;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 1s ease-out;
+      position: sticky;
+      top: 100px;
+    }
+
+    .highlights-image-content.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .highlights-image-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .highlights-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #ffd700, #1a4d2e);
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .highlights-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .highlights-decorative-element {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: #ffd700;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .highlights-decorative-element.top-left {
+      top: -50px;
+      left: -50px;
+    }
+
+    .highlights-decorative-element.bottom-right {
+      bottom: -50px;
+      right: -50px;
+      background: #1a4d2e;
+    }
+
+    .highlights-list-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.6s ease-out;
+    }
+
+    .highlight-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .highlight-item:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    .highlight-item:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .highlight-item:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    .highlight-item:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    .highlight-item:nth-child(5) {
+      transition-delay: 0.5s;
+    }
+
+    .highlight-item:nth-child(6) {
+      transition-delay: 0.6s;
+    }
+
+    .highlight-item:nth-child(7) {
+      transition-delay: 0.7s;
+    }
+
+    .highlight-item:nth-child(8) {
+      transition-delay: 0.8s;
+    }
+
+    .highlight-icon {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .highlight-item:hover .highlight-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .highlight-icon svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .highlight-text {
+      flex: 1;
+    }
+
+    .highlight-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a4d2e;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin: 0;
+    }
+
+    /* Location Section Styles */
+    .location-section {
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .location-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .location-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .location-main-heading {
+      font-size: 2rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    }
+
+    .location-main-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: #daa43c;
+      border-radius: 2px;
+    }
+
+    .location-sub-heading {
+     font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a4d2e;
+    position: relative;
+    display: inline-block;
+    }
+
+    .location-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .location-text-content {
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: all 1s ease-out;
+      width: 100%;
+    }
+
+    .location-text-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .location-paragraph {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #333;
+      text-align: justify;
+      margin-bottom: 2rem;
+      padding: 30px;
+      background: rgba(26, 77, 46, 0.05);
+      border-left: 4px solid #ffd700;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .location-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .location-highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 15px 20px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .location-highlight-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .location-highlight-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .location-highlight-text {
+      font-size: 1rem;
+      color: #1a4d2e;
+      font-weight: 600;
+    }
+
+    .location-map-content {
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-out;
+      width: 100%;
+    }
+
+    .location-map-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .location-map-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      background: #e8f5e9;
+    }
+
+    .location-map-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #ffd700, #1a4d2e);
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .location-map {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      min-height: 500px;
+    }
+
+    .location-decorative-element {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: #ffd700;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .location-decorative-element.top-right {
+      top: -50px;
+      right: -50px;
+    }
+
+    .location-decorative-element.bottom-left {
+      bottom: -50px;
+      left: -50px;
+      background: #1a4d2e;
+    }
+
+    /* Configuration Table Section Styles */
+    .config-section {
+      background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .config-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .config-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .config-main-heading {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .config-sub-heading {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1a4d2e;
+      position: relative;
+      display: inline-block;
+    }
+
+    .config-sub-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: #daa43c;
+      border-radius: 2px;
+    }
+
+    .config-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .table-wrapper {
+      width: 100%;
+      max-width: 900px;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 1s ease-out;
+      overflow-x: auto;
+    }
+
+    .table-wrapper.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .config-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .config-table thead {
+      background: linear-gradient(135deg, #1a4d2e 0%, #2d5a3d 100%);
+    }
+
+    .config-table th {
+      padding: 20px 30px;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .config-table tbody tr {
+      border-bottom: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+    }
+
+    .config-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .config-table tbody tr:hover {
+      background: #f8f9fa;
+      transform: scale(1.02);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .config-table td {
+      padding: 25px 30px;
+      font-size: 1.05rem;
+      color: #333;
+    }
+
+    .plot-type {
+      font-weight: 700;
+      color: #1a4d2e;
+      font-size: 1.2rem;
+    }
+
+    .plot-area {
+      color: #555;
+      font-weight: 600;
+    }
+
+    .plot-ideal {
+      color: #666;
+    }
+
+    .table-row {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .table-row.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .table-row:nth-child(1) {
+      transition-delay: 0.2s;
+    }
+
+    .table-row:nth-child(2) {
+      transition-delay: 0.4s;
+    }
+
+    .table-row:nth-child(3) {
+      transition-delay: 0.6s;
+    }
+
+    .loan-info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 25px 40px;
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+      border-left: 5px solid #ffd700;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      max-width: 900px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-out;
+    }
+
+    .loan-info.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .loan-icon {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .loan-text {
+      font-size: 1.15rem;
+      color: #1a4d2e;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .loan-text strong {
+      color: #1a4d2e;
+      font-weight: 700;
+    }
+
+    /* Trust & Legal Section Styles */
+    .trust-section {
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .trust-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .trust-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .trust-main-heading {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .trust-sub-heading {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1a4d2e;
+      position: relative;
+      display: inline-block;
+    }
+
+    .trust-sub-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: #daa43c;
+      border-radius: 2px;
+    }
+
+    .trust-content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .trust-list-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .trust-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.6s ease-out;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .trust-item:hover {
+      transform: translateX(0) scale(1.02);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .trust-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .trust-item:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    .trust-item:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .trust-item:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    .trust-item:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    .trust-icon {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .trust-item:hover .trust-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .trust-icon svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .trust-text {
+      flex: 1;
+    }
+
+    .trust-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a4d2e;
+      margin-bottom: 0.5rem;
+    }
+
+    .trust-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin: 0;
+    }
+
+    .trust-image-content {
+      position: relative;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 1s ease-out;
+      position: sticky;
+      top: 100px;
+    }
+
+    .trust-image-content.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .trust-image-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .trust-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #ffd700, #1a4d2e);
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .trust-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .trust-decorative-element {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: #ffd700;
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .trust-decorative-element.top-right {
+      top: -50px;
+      right: -50px;
+    }
+
+    .trust-decorative-element.bottom-left {
+      bottom: -50px;
+      left: -50px;
+      background: #1a4d2e;
+    }
+
+    /* Footer Section Styles */
+    .footer-section {
+      background: linear-gradient(180deg, #f8f9fa 0%, #e8f5e9 100%);
+      padding: 100px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .footer-main-heading {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1a4d2e;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-main-heading::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: #daa43c;
+      border-radius: 2px;
+      animation: expandWidth 1s ease-out 0.5s forwards;
+      width: 0;
+    }
+
+    @keyframes expandWidth {
+      to {
+        width: 100px;
+      }
+    }
+
+    .footer-sub-heading {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #666;
+      margin-top: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .footer-content-wrapper {
+      position: relative;
+    }
+
+    .footer-message {
+      text-align: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 1s ease-out;
+    }
+
+    .footer-message.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .footer-message-text {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: #1a4d2e;
+      font-weight: 600;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 40px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border-left: 5px solid #daa43c;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .footer-contact-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer-contact-item:nth-child(1) {
+      transition-delay: 0.2s;
+    }
+
+    .footer-contact-item:nth-child(2) {
+      transition-delay: 0.4s;
+    }
+
+    .footer-contact-item:nth-child(3) {
+      transition-delay: 0.6s;
+    }
+
+    .footer-contact-item-wide {
+      grid-column: 1 / -1;
+    }
+
+    .footer-contact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .footer-icon {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      transition: transform 0.4s ease;
+    }
+
+    .footer-contact-item:hover .footer-icon {
+      transform: scale(1.1) rotate(5deg);
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1.1) rotate(5deg);
+      }
+      50% {
+        transform: scale(1.2) rotate(5deg);
+      }
+    }
+
+    .footer-icon svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .footer-contact-text {
+      flex: 1;
+    }
+
+    .footer-contact-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-contact-link {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #1a4d2e;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-contact-link:hover {
+      color: #ffd700;
+      transform: translateX(5px);
+    }
+
+    .footer-decorative {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      z-index: -1;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .footer-decorative svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .footer-bottom {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e0e0e0;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 1.2s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .footer-copyright {
+      font-size: 1rem;
+      color: #666;
+      margin: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: rgba(26, 77, 46, 0.98);
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+
+      .nav-menu.active {
+        transform: translateX(0);
+      }
+
+      .nav-menu li {
+        width: 100%;
+        text-align: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-link::after {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        height: 70px;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
+      .headline {
+        font-size: 2.5rem;
+      }
+
+      .subheadline {
+        font-size: 1.1rem;
+      }
+
+      .btn {
+        padding: 14px 30px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .cta-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .modal-content {
+        padding: 30px 20px;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+
+      .hero-section {
+        padding-top: 90px;
+      }
+
+      .about-section {
+        padding: 60px 20px;
+      }
+
+      .about-main-heading {
+        font-size: 1.2rem;
+      }
+
+      .about-sub-heading {
+        font-size: 2.2rem;
+      }
+
+      .about-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-paragraph {
+        font-size: 1.05rem;
+        text-align: left;
+        transform: translateY(30px);
+      }
+
+      .about-paragraph.visible {
+        transform: translateY(0);
+      }
+
+      .about-image-content {
+        transform: translateY(30px);
+        order: -1;
+      }
+
+      .about-image-content.visible {
+        transform: translateY(0);
+      }
+
+      .highlights-section {
+        padding: 60px 20px;
+      }
+
+      .highlights-main-heading {
+        font-size: 1.2rem;
+      }
+
+      .highlights-sub-heading {
+        font-size: 2.2rem;
+      }
+
+      .highlights-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .highlights-image-content {
+        position: relative;
+        transform: translateY(30px);
+      }
+
+      .highlights-image-content.visible {
+        transform: translateY(0);
+      }
+
+      .highlight-item {
+        transform: translateY(30px);
+      }
+
+      .highlight-item.visible {
+        transform: translateY(0);
+      }
+
+      .highlight-title {
+        font-size: 1.15rem;
+      }
+
+      .highlight-description {
+        font-size: 0.95rem;
+      }
+
+      .location-section {
+        padding: 60px 20px;
+      }
+
+      .location-main-heading {
+        font-size: 2.2rem;
+      }
+
+      .location-sub-heading {
+        font-size: 1.2rem;
+      }
+
+      .location-content-wrapper {
+        gap: 2.5rem;
+      }
+
+      .location-paragraph {
+        font-size: 1.05rem;
+        text-align: left;
+        padding: 20px;
+      }
+
+      .location-map {
+        min-height: 350px;
+      }
+
+      .config-section {
+        padding: 60px 20px;
+      }
+
+      .config-main-heading {
+        font-size: 1.2rem;
+      }
+
+      .config-sub-heading {
+        font-size: 2.2rem;
+      }
+
+      .config-table th {
+        padding: 15px 20px;
+        font-size: 0.95rem;
+      }
+
+      .config-table td {
+        padding: 20px;
+        font-size: 1rem;
+      }
+
+      .plot-type {
+        font-size: 1.1rem;
+      }
+
+      .loan-info {
+        padding: 20px 25px;
+        gap: 1rem;
+      }
+
+      .loan-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .loan-text {
+        font-size: 1.05rem;
+      }
+
+      .trust-section {
+        padding: 60px 20px;
+      }
+
+      .trust-main-heading {
+        font-size: 1.2rem;
+      }
+
+      .trust-sub-heading {
+        font-size: 2.2rem;
+      }
+
+      .trust-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .trust-image-content {
+        position: relative;
+        transform: translateY(30px);
+      }
+
+      .trust-image-content.visible {
+        transform: translateY(0);
+      }
+
+      .trust-item {
+        transform: translateY(30px);
+      }
+
+      .trust-item.visible {
+        transform: translateY(0);
+      }
+
+      .trust-title {
+        font-size: 1.15rem;
+      }
+
+      .trust-description {
+        font-size: 0.95rem;
+      }
+
+      .footer-section {
+        padding: 60px 20px 30px;
+      }
+
+      .footer-main-heading {
+        font-size: 2.2rem;
+      }
+
+      .footer-sub-heading {
+        font-size: 1.2rem;
+      }
+
+      .footer-message-text {
+        font-size: 1.15rem;
+        padding: 25px 30px;
+      }
+
+      .footer-contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-contact-item {
+        padding: 25px;
+      }
+
+      .footer-icon {
+        width: 50px;
+        height: 50px;
+      }
+
+      .footer-contact-link {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .headline {
+        font-size: 2rem;
+      }
+
+      .subheadline {
+        font-size: 1rem;
+      }
+
+      .hero-section {
+        padding: 80px 15px 15px;
+      }
+
+      .logo-text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Header/Navigation -->
+  <header class="header" id="header">
+   <nav class="nav-container">
+    <div class="logo-container">
+    
+     <div class="logo-text" id="logoText">
+     <img src="images/logo.png" width="125px" height="125px">
+     </div>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+     <li><a href="#home" class="nav-link">Home</a></li>
+     <li><a href="#about" class="nav-link">About Us</a></li>
+     <li><a href="#highlights" class="nav-link">Project Highlights</a></li>
+     <li><a href="#location" class="nav-link">Location Advantage</a></li>
+     <li><a href="#configuration" class="nav-link">Configuration Table</a></li>
+     <li><a href="#trust" class="nav-link">Trust &amp; Legal</a></li>
+     <li><a href="#contact" class="nav-link">Contact Us</a></li>
+    </ul><button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"> <span class="hamburger"></span> </button>
+   </nav>
+  </header><!-- Hero Section -->
+  <div class="hero-section" id="home">
+   <div class="hero-background">
+    <img src="images/hero-image.jpg" width="100%" height="100%">
+   </div>
+   <div class="hero-content">
+    <h1 class="headline" id="headline">Where Salem Comes to Life</h1>
+    <p class="subheadline" id="subheadline">Experience the city's first truly integrated ultra-luxurious township. DTCP Approved Premium Plots starting from ₹15 Lakhs Onwards.</p>
+    <div class="cta-container"><button class="btn btn-primary" id="downloadBt"> <span id="downloadBtnText">Download Brochure</span>
+      <div class="loading-spinner" id="downloadSpinner"></div></button> <button class="btn btn-secondary" id="videosBtn"> <span id="videosBtnText">View Videos</span> </button>
+    </div>
+   </div>
+  </div><!-- About The Project Section -->
+  <section class="about-section" id="about">
+   <div class="about-container">
+    <div class="about-header">
+     <div class="about-main-heading">
+      About The Project
+     </div>
+     <h2 class="about-sub-heading">Salem, Reimagined</h2>
+    </div>
+    <div class="about-content-wrapper">
+     <div class="about-text-content">
+      <p class="about-paragraph">Welcome to a new era of urban living in Salem. Our township represents the perfect harmony of modern luxury and timeless values, where every detail has been thoughtfully crafted to enhance your lifestyle.</p>
+      <p class="about-paragraph">Spanning across meticulously planned acres, this DTCP approved project sets new standards for integrated township development in the region. We've reimagined what a community can be, creating spaces that foster connection, growth, and prosperity.</p>
+      <p class="about-paragraph">From world-class amenities to sustainable infrastructure, from premium plot sizes to strategic location advantages, every aspect has been designed with your family's future in mind. This is more than just a real estate investment – it's an investment in a lifestyle you've always dreamed of.</p>
+      <p class="about-paragraph">Join us in building a community where traditions meet innovation, where nature coexists with modern convenience, and where your aspirations find their perfect home. Salem reimagined is not just a vision – it's a reality waiting for you.</p>
+     </div>
+     <div class="about-image-content">
+      <div class="about-decorative-element top-left"></div>
+      <div class="about-image-wrapper">
+       <img src="images/about.jpg">
+      </div>
+      <div class="about-decorative-element bottom-right"></div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Project Highlights Section -->
+  <section class="highlights-section" id="highlights">
+   <div class="highlights-container">
+    <div class="highlights-header">
+     <div class="highlights-main-heading">
+      Project Highlights (The "Why Us")
+     </div>
+     <h2 class="highlights-sub-heading">Why SALEM 12345?</h2>
+    </div>
+    <div class="highlights-content-wrapper">
+     <div class="highlights-image-content">
+      <div class="highlights-decorative-element top-left"></div>
+      <div class="highlights-image-wrapper">
+        <img src="images/why-salem.jpg">
+      </div>
+      <div class="highlights-decorative-element bottom-right"></div>
+     </div>
+     <div class="highlights-list-content">
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M15 25 L22 32 L35 18" stroke="#daa43c" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">The First of its Kind</h3>
+        <p class="highlight-description">Salem's premiere integrated township offering a holistic living experience.</p>
+       </div>
+      </div>
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <rect x="15" y="18" width="20" height="20" stroke="#daa43c" stroke-width="2.5" fill="none" rx="2" /> <line x1="20" y1="18" x2="20" y2="38" stroke="#FFD700" stroke-width="2" /> <line x1="30" y1="18" x2="30" y2="38" stroke="#FFD700" stroke-width="2" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">Perfect Size</h3>
+        <p class="highlight-description">Pre-Engineered Plots to accommodate everyone and be affordable.</p>
+       </div>
+      </div>
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M15 30 L25 20 L35 30 L35 38 L15 38 Z" stroke="#daa43c" stroke-width="2.5" fill="none" stroke-linejoin="round" /> <rect x="22" y="32" width="6" height="6" fill="#FFD700" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">The Canvas</h3>
+        <p class="highlight-description">Spacious plots designed for dream villas and high-end construction.</p>
+       </div>
+      </div>
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M25 15 L28 22 L35 23 L30 28 L31 35 L25 31 L19 35 L20 28 L15 23 L22 22 Z" fill="#daa43c" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">The Investment</h3>
+        <p class="highlight-description">A high-appreciation asset located at the intersection of tranquillity and accessibility.</p>
+       </div>
+      </div>
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <circle cx="25" cy="25" r="10" stroke="#daa43c" stroke-width="2.5" fill="none" /> <circle cx="25" cy="25" r="3" fill="#FFD700" /> <line x1="25" y1="12" x2="25" y2="18" stroke="#FFD700" stroke-width="2" /> <line x1="25" y1="32" x2="25" y2="38" stroke="#FFD700" stroke-width="2" /> <line x1="12" y1="25" x2="18" y2="25" stroke="#FFD700" stroke-width="2" /> <line x1="32" y1="25" x2="38" y2="25" stroke="#FFD700" stroke-width="2" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">The Lifestyle</h3>
+        <p class="highlight-description">An exclusive gateway to world-class amenities and urban convenience. This is one of its kind and the most finest plotted development township in Salem.</p>
+       </div>
+      </div>
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M15 30 L20 20 L30 20 L35 30 Z" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-linejoin="round" /> <rect x="10" y="30" width="30" height="3" fill="#FFD700" /> <circle cx="32" cy="23" r="2" fill="#FFD700" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">Grand Entrance</h3>
+        <p class="highlight-description">Majestic entrance arch with 24/7 security cabin and CCTV surveillance.</p>
+       </div>
+      </div>
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <rect x="12" y="28" width="26" height="4" fill="#FFD700" rx="1" /> <rect x="15" y="22" width="5" height="2" fill="#FFD700" /> <rect x="22" y="22" width="5" height="2" fill="#FFD700" /> <rect x="29" y="22" width="5" height="2" fill="#FFD700" /> <circle cx="17" cy="18" r="2" fill="#FFD700" /> <circle cx="33" cy="18" r="2" fill="#FFD700" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">Infrastructure</h3>
+        <p class="highlight-description">40ft &amp; 30ft wide quality blacktop (Thar) roads with street lights and avenue plantations.</p>
+       </div>
+      </div>
+      <div class="highlight-item">
+       <div class="highlight-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M20 32 L20 36 L30 36 L30 32 Q30 28 25 28 Q20 28 20 32 Z" fill="#FFD700" /> <rect x="23" y="20" width="4" height="8" fill="#FFD700" rx="1" /> <circle cx="25" cy="18" r="3" fill="#FFD700" /> <path d="M17 30 L17 38 L33 38 L33 30" stroke="#FFD700" stroke-width="1.5" fill="none" />
+        </svg>
+       </div>
+       <div class="highlight-text">
+        <h3 class="highlight-title">Water &amp; Drains</h3>
+        <p class="highlight-description">Underground drain system and dedicated overhead water tank for uninterrupted supply.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Location Advantage Section -->
+  <section class="location-section" id="location">
+   <div class="location-container">
+    <div class="location-header">
+     <h2 class="location-main-heading">Location Advantage</h2>
+     <div class="location-sub-heading">
+      Strategic Location
+     </div>
+    </div>
+    <div class="location-content-wrapper">
+     <div class="location-text-content">
+      <p class="location-paragraph">Situated Bang on main road at Panjukalipatti, just 2 minutes away from Omalur Junction and Railway Station and strategically located on main road which is fully developed as the Salem's Silk Hub with multiple Silk Showrooms, Commercial Establishments, Schools etc right outside our township.</p>
+      <div class="location-highlights">
+       <div class="location-highlight-item">
+        <div class="location-highlight-icon">
+         <svg viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#1a4d2e" /> <path d="M20 10 L20 20 L26 26" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-linecap="round" /> <circle cx="20" cy="20" r="2" fill="#FFD700" />
+         </svg>
+        </div>
+        <div class="location-highlight-text">
+         2 Minutes to Omalur Junction
+        </div>
+       </div>
+       <div class="location-highlight-item">
+        <div class="location-highlight-icon">
+         <svg viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#1a4d2e" /> <rect x="12" y="16" width="16" height="10" rx="2" stroke="#FFD700" stroke-width="2" fill="none" /> <rect x="15" y="18" width="3" height="3" fill="#FFD700" /> <rect x="22" y="18" width="3" height="3" fill="#FFD700" /> <rect x="18" y="22" width="4" height="4" fill="#FFD700" />
+         </svg>
+        </div>
+        <div class="location-highlight-text">
+         Next to Railway Station
+        </div>
+       </div>
+       <div class="location-highlight-item">
+        <div class="location-highlight-icon">
+         <svg viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#1a4d2e" /> <rect x="13" y="15" width="14" height="12" rx="1" stroke="#FFD700" stroke-width="2" fill="none" /> <rect x="16" y="19" width="3" height="4" fill="#FFD700" /> <rect x="21" y="19" width="3" height="4" fill="#FFD700" /> <line x1="13" y1="23" x2="27" y2="23" stroke="#FFD700" stroke-width="2" />
+         </svg>
+        </div>
+        <div class="location-highlight-text">
+         Salem's Silk Hub Location
+        </div>
+       </div>
+       <div class="location-highlight-item">
+        <div class="location-highlight-icon">
+         <svg viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#1a4d2e" /> <path d="M15 24 L20 18 L25 24 L25 28 L15 28 Z" stroke="#FFD700" stroke-width="2" fill="none" /> <rect x="18" y="25" width="4" height="3" fill="#FFD700" />
+         </svg>
+        </div>
+        <div class="location-highlight-text">
+         Commercial Establishments Nearby
+        </div>
+       </div>
+       <div class="location-highlight-item">
+        <div class="location-highlight-icon">
+         <svg viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#1a4d2e" /> <path d="M14 25 L20 16 L26 25 Z" stroke="#FFD700" stroke-width="2" fill="none" /> <rect x="17" y="22" width="6" height="6" stroke="#FFD700" stroke-width="2" fill="none" /> <line x1="20" y1="22" x2="20" y2="28" stroke="#FFD700" stroke-width="2" />
+         </svg>
+        </div>
+        <div class="location-highlight-text">
+         Schools &amp; Educational Institutions
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="location-map-content">
+      <div class="location-decorative-element top-right"></div>
+      <div class="location-map-wrapper">
+       <img src="images/map.png" width="100%">
+      </div>
+      <div class="location-decorative-element bottom-left"></div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Configuration Table Section -->
+  <section class="config-section" id="configuration">
+   <div class="config-container">
+    <div class="config-header">
+     <div class="config-main-heading">
+      Configuration Table
+     </div>
+     <h2 class="config-sub-heading">Plot Configurations</h2>
+    </div>
+    <div class="config-content">
+     <div class="table-wrapper">
+      <table class="config-table">
+       <thead>
+        <tr>
+         <th>Plot Type</th>
+         <th>Area (Sq. Ft.)</th>
+         <th>Ideal For</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="table-row">
+         <td class="plot-type">Standard</td>
+         <td class="plot-area">600 - 800</td>
+         <td class="plot-ideal">Smart Investment</td>
+        </tr>
+        <tr class="table-row">
+         <td class="plot-type">Luxury</td>
+         <td class="plot-area">1200 - 1500</td>
+         <td class="plot-ideal">Spacious 3-4 BHK Villa</td>
+        </tr>
+        <tr class="table-row">
+         <td class="plot-type">Premium</td>
+         <td class="plot-area">2400+</td>
+         <td class="plot-ideal">Luxury Mansion</td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <div class="loan-info">
+      <svg class="loan-icon" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <rect x="15" y="18" width="20" height="16" rx="2" stroke="#FFD700" stroke-width="2.5" fill="none" /> <path d="M20 18 L20 15 Q20 12 25 12 Q30 12 30 15 L30 18" stroke="#FFD700" stroke-width="2.5" fill="none" /> <circle cx="25" cy="26" r="2.5" fill="#FFD700" /> <rect x="24" y="26" width="2" height="4" fill="#FFD700" />
+      </svg>
+      <p class="loan-text"><strong>Loans from:</strong> All major nationalised banks and leading private banks</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Trust & Legal Section -->
+  <section class="trust-section" id="trust">
+   <div class="trust-container">
+    <div class="trust-header">
+     <div class="trust-main-heading">
+      Trust &amp; Legal
+     </div>
+     <h2 class="trust-sub-heading">Unwavering Reliability; Trust in Every Detail</h2>
+    </div>
+    <div class="trust-content-wrapper">
+     <div class="trust-list-content">
+      <div class="trust-item">
+       <div class="trust-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M15 25 L22 32 L35 18" stroke="#FFD700" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <div class="trust-text">
+        <h3 class="trust-title">DTCP Approved</h3>
+        <p class="trust-description">Fully approved by the Directorate of Town and Country Planning, ensuring compliance with all statutory requirements.</p>
+       </div>
+      </div>
+      <div class="trust-item">
+       <div class="trust-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M15 25 L22 32 L35 18" stroke="#FFD700" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <div class="trust-text">
+        <h3 class="trust-title">RERA Registered</h3>
+        <p class="trust-description">Registered under the Real Estate Regulatory Authority for complete transparency and buyer protection.</p>
+       </div>
+      </div>
+      <div class="trust-item">
+       <div class="trust-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M15 25 L22 32 L35 18" stroke="#FFD700" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <div class="trust-text">
+        <h3 class="trust-title">Clear and Transparent Documentation</h3>
+        <p class="trust-description">All legal documents are crystal clear with no hidden clauses, ensuring complete peace of mind for all stakeholders.</p>
+       </div>
+      </div>
+      <div class="trust-item">
+       <div class="trust-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M15 25 L22 32 L35 18" stroke="#FFD700" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <div class="trust-text">
+        <h3 class="trust-title">Legal Opinion Available on Request</h3>
+        <p class="trust-description">Expert legal opinions from renowned advocates available for your complete satisfaction and assurance.</p>
+       </div>
+      </div>
+     </div>
+     <div class="trust-image-content">
+      <div class="trust-decorative-element top-right"></div>
+      <div class="trust-image-wrapper">
+     <img src="images/legal.jpg">
+      </div>
+      <div class="trust-decorative-element bottom-left"></div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer Section -->
+  <footer class="footer-section" id="contact">
+   <div class="footer-container">
+    <div class="footer-header">
+     <h2 class="footer-main-heading">Contact Us</h2>
+     <div class="footer-sub-heading">
+      Live Better
+     </div>
+    </div>
+    <div class="footer-content-wrapper">
+     <div class="footer-message">
+      <p class="footer-message-text">Don't miss out on Salem's most prestigious address. Limited plots available.</p>
+     </div>
+     <div class="footer-contact-grid">
+      <div class="footer-contact-item">
+       <div class="footer-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M18 18 C18 18 20 16 22 16 C24 16 25 17 25 19 C25 21 23 22 22 23 C21 24 20 25 20 27 L20 28" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-linecap="round" /> <path d="M30 22 C30 22 28 20 26 20 C24 20 23 21 23 23 C23 25 25 26 26 27 C27 28 28 29 28 31 L28 32" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-linecap="round" /> <rect x="15" y="28" width="20" height="8" rx="2" fill="#FFD700" /> <path d="M19 32 L19 36 L22 34 L25 36 L25 32" fill="#FFD700" /> <path d="M27 36 L27 32 L31 32 L31 36 L29 34 Z" fill="#FFD700" />
+        </svg>
+       </div>
+       <div class="footer-contact-text">
+        <div class="footer-contact-label">
+         Phone
+        </div><a href="tel:+919787034567" class="footer-contact-link">+91 97870 34567</a>
+       </div>
+      </div>
+      <div class="footer-contact-item">
+       <div class="footer-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <rect x="13" y="18" width="24" height="16" rx="2" stroke="#FFD700" stroke-width="2.5" fill="none" /> <path d="M13 20 L25 28 L37 20" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <div class="footer-contact-text">
+        <div class="footer-contact-label">
+         Email
+        </div><a href="mailto:spherehousing@gmail.com" class="footer-contact-link">spherehousing@gmail.com</a>
+       </div>
+      </div>
+      <div class="footer-contact-item footer-contact-item-wide">
+       <div class="footer-icon">
+        <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" fill="#1a4d2e" /> <path d="M25 15 C20 15 17 18 17 22 C17 27 25 35 25 35 C25 35 33 27 33 22 C33 18 30 15 25 15 Z" stroke="#FFD700" stroke-width="2.5" fill="none" /> <circle cx="25" cy="22" r="3" fill="#FFD700" />
+        </svg>
+       </div>
+       <div class="footer-contact-text">
+        <div class="footer-contact-label">
+         Office Address
+        </div><a href="https://maps.google.com/?q=171/D2,Rajapuram,Nedunchalai Nagar,Salem,636005" target="_blank" rel="noopener noreferrer" class="footer-contact-link">171/D2, Rajapuram, Nedunchalai Nagar, Salem, 636005</a>
+       </div>
+      </div>
+     </div>
+     <div class="footer-decorative">
+      <svg viewbox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="none"><path d="M0 100 Q300 50 600 100 T1200 100 L1200 200 L0 200 Z" fill="#1a4d2e" opacity="0.1" /> <path d="M0 120 Q300 80 600 120 T1200 120 L1200 200 L0 200 Z" fill="#1a4d2e" opacity="0.05" />
+      </svg>
+     </div>
+    </div>
+    <div class="footer-bottom">
+     <p class="footer-copyright">© 2024 Salem Township. All rights reserved. | Developed with Skifter Technologies.</p>
+    </div>
+   </div>
+  </footer><!-- Form Modal -->
+  <div class="modal" id="formModal">
+   <div class="modal-content"><button class="modal-close" id="closeFormModal">×</button>
+    <h2 class="modal-title">Get Your Brochure</h2>
+    <div class="form-success" id="formSuccess">
+     Thank you! Your brochure is downloading now.
+    </div>
+    <form id="brochureForm">
+     <div class="form-group"><label for="name" class="form-label">Name</label> <input type="text" id="name" class="form-input" required>
+      <div class="form-error" id="nameError">
+       Please enter your name
+      </div>
+     </div>
+     <div class="form-group"><label for="mobile" class="form-label">Mobile Number</label> <input type="tel" id="mobile" class="form-input" pattern="[0-9]{10}" required>
+      <div class="form-error" id="mobileError">
+       Please enter a valid 10-digit mobile number
+      </div>
+     </div>
+     <div class="form-group"><label for="sqft" class="form-label">Square Feet Required</label> <input type="text" id="sqft" class="form-input" required>
+      <div class="form-error" id="sqftError">
+       Please enter square feet required
+      </div>
+     </div><button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%;"> <span id="submitBtnText">Submit &amp; Download</span>
+      <div class="loading-spinner" id="submitSpinner"></div></button>
+    </form>
+   </div>
+  </div><!-- Videos Modal -->
+  <div class="modal" id="videosModal">
+   <div class="modal-content" style="max-width: 800px;"><button class="modal-close" id="closeVideosModal">×</button>
+    <h2 class="modal-title">Township Videos</h2>
+    <div class="video-gallery">
+     <div class="video-card" data-video="1">
+      <div class="video-thumbnail">
+       <div class="play-icon">
+        ▶
+       </div>
+      </div>
+      <div class="video-title">
+       Township Overview
+      </div>
+     </div>
+     <div class="video-card" data-video="2">
+      <div class="video-thumbnail">
+       <div class="play-icon">
+        ▶
+       </div>
+      </div>
+      <div class="video-title">
+       Premium Amenities
+      </div>
+     </div>
+     <div class="video-card" data-video="3">
+      <div class="video-thumbnail">
+       <div class="play-icon">
+        ▶
+       </div>
+      </div>
+      <div class="video-title">
+       Location Advantages
+      </div>
+     </div>
+     <div class="video-card" data-video="4">
+      <div class="video-thumbnail">
+       <div class="play-icon">
+        ▶
+       </div>
+      </div>
+      <div class="video-title">
+       Plot Layout &amp; Design
+      </div>
+     </div>
+     <div class="video-card" data-video="5">
+      <div class="video-thumbnail">
+       <div class="play-icon">
+        ▶
+       </div>
+      </div>
+      <div class="video-title">
+       Customer Testimonials
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      logo_text: "SALEM TOWNSHIP",
+      headline: "Where Salem Comes to Life",
+      subheadline: "Experience the city's first truly integrated ultra-luxurious township. DTCP Approved Premium Plots starting from ₹15 Lakhs Onwards.",
+      primary_cta: "Download Brochure",
+      secondary_cta: "View Videos",
+      background_color: "#1a4d2e",
+      surface_color: "#ffffff",
+      text_color: "#ffffff",
+      primary_action: "#ffd700",
+      secondary_action: "#ffffff"
+    };
+
+    let currentRecordCount = 0;
+
+    const dataHandler = {
+      onDataChanged(data) {
+        currentRecordCount = data.length;
+      }
+    };
+
+    async function onConfigChange(config) {
+      const logoText = config.logo_text || defaultConfig.logo_text;
+      const headline = config.headline || defaultConfig.headline;
+      const subheadline = config.subheadline || defaultConfig.subheadline;
+      const primaryCta = config.primary_cta || defaultConfig.primary_cta;
+      const secondaryCta = config.secondary_cta || defaultConfig.secondary_cta;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryAction = config.primary_action || defaultConfig.primary_action;
+      const secondaryAction = config.secondary_action || defaultConfig.secondary_action;
+
+      document.getElementById('logoText').textContent = logoText;
+      document.getElementById('headline').textContent = headline;
+      document.getElementById('subheadline').textContent = subheadline;
+      document.getElementById('downloadBtnText').textContent = primaryCta;
+      document.getElementById('videosBtnText').textContent = secondaryCta;
+
+
+      document.querySelector('.header').style.background = `rgba(${hexToRgb(backgroundColor)}, 0.95)`;
+      document.querySelector('.headline').style.color = textColor;
+      document.querySelector('.subheadline').style.color = textColor;
+      document.querySelector('.logo-text').style.color = textColor;
+      
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.style.color = textColor;
+      });
+
+      const modalContents = document.querySelectorAll('.modal-content');
+      modalContents.forEach(modal => {
+        modal.style.background = surfaceColor;
+      });
+
+      document.querySelector('.btn-primary').style.background = primaryAction;
+      document.querySelector('.btn-secondary').style.borderColor = secondaryAction;
+      document.querySelector('.btn-secondary').style.color = secondaryAction;
+    }
+
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '26, 77, 46';
+    }
+
+    async function initializeApp() {
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error("Failed to initialize data SDK");
+        }
+      }
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              {
+                get: () => config.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  config.background_color = value;
+                  window.elementSdk.setConfig({ background_color: value });
+                }
+              },
+              {
+                get: () => config.surface_color || defaultConfig.surface_color,
+                set: (value) => {
+                  config.surface_color = value;
+                  window.elementSdk.setConfig({ surface_color: value });
+                }
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  config.text_color = value;
+                  window.elementSdk.setConfig({ text_color: value });
+                }
+              },
+              {
+                get: () => config.primary_action || defaultConfig.primary_action,
+                set: (value) => {
+                  config.primary_action = value;
+                  window.elementSdk.setConfig({ primary_action: value });
+                }
+              },
+              {
+                get: () => config.secondary_action || defaultConfig.secondary_action,
+                set: (value) => {
+                  config.secondary_action = value;
+                  window.elementSdk.setConfig({ secondary_action: value });
+                }
+              }
+            ],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ["logo_text", config.logo_text || defaultConfig.logo_text],
+            ["headline", config.headline || defaultConfig.headline],
+            ["subheadline", config.subheadline || defaultConfig.subheadline],
+            ["primary_cta", config.primary_cta || defaultConfig.primary_cta],
+            ["secondary_cta", config.secondary_cta || defaultConfig.secondary_cta]
+          ])
+        });
+      }
+    }
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // About section animation on scroll
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.about-paragraph').forEach(paragraph => {
+      observer.observe(paragraph);
+    });
+
+    const imageContent = document.querySelector('.about-image-content');
+    if (imageContent) {
+      observer.observe(imageContent);
+    }
+
+    // Highlights section animation on scroll
+    const highlightsImageContent = document.querySelector('.highlights-image-content');
+    if (highlightsImageContent) {
+      observer.observe(highlightsImageContent);
+    }
+
+    document.querySelectorAll('.highlight-item').forEach(item => {
+      observer.observe(item);
+    });
+
+    // Location section animation on scroll
+    const locationTextContent = document.querySelector('.location-text-content');
+    if (locationTextContent) {
+      observer.observe(locationTextContent);
+    }
+
+    const locationMapContent = document.querySelector('.location-map-content');
+    if (locationMapContent) {
+      observer.observe(locationMapContent);
+    }
+
+    // Configuration table animation on scroll
+    const tableWrapper = document.querySelector('.table-wrapper');
+    if (tableWrapper) {
+      observer.observe(tableWrapper);
+    }
+
+    document.querySelectorAll('.table-row').forEach(row => {
+      observer.observe(row);
+    });
+
+    const loanInfo = document.querySelector('.loan-info');
+    if (loanInfo) {
+      observer.observe(loanInfo);
+    }
+
+    // Trust section animation on scroll
+    const trustImageContent = document.querySelector('.trust-image-content');
+    if (trustImageContent) {
+      observer.observe(trustImageContent);
+    }
+
+    document.querySelectorAll('.trust-item').forEach(item => {
+      observer.observe(item);
+    });
+
+    // Footer section animation on scroll
+    const footerMessage = document.querySelector('.footer-message');
+    if (footerMessage) {
+      observer.observe(footerMessage);
+    }
+
+    document.querySelectorAll('.footer-contact-item').forEach(item => {
+      observer.observe(item);
+    });
+
+    const formModal = document.getElementById('formModal');
+    const videosModal = document.getElementById('videosModal');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const videosBtn = document.getElementById('videosBtn');
+    const closeFormModal = document.getElementById('closeFormModal');
+    const closeVideosModal = document.getElementById('closeVideosModal');
+    const brochureForm = document.getElementById('brochureForm');
+
+    downloadBtn.addEventListener('click', () => {
+      formModal.classList.add('active');
+      document.getElementById('formSuccess').classList.remove('active');
+      brochureForm.reset();
+    });
+
+    videosBtn.addEventListener('click', () => {
+      videosModal.classList.add('active');
+    });
+
+    closeFormModal.addEventListener('click', () => {
+      formModal.classList.remove('active');
+    });
+
+    closeVideosModal.addEventListener('click', () => {
+      videosModal.classList.remove('active');
+    });
+
+    formModal.addEventListener('click', (e) => {
+      if (e.target === formModal) {
+        formModal.classList.remove('active');
+      }
+    });
+
+    videosModal.addEventListener('click', (e) => {
+      if (e.target === videosModal) {
+        videosModal.classList.remove('active');
+      }
+    });
+
+    document.querySelectorAll('.video-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const videoNumber = card.getAttribute('data-video');
+        const message = document.createElement('div');
+        message.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a4d2e; color: white; padding: 20px 40px; border-radius: 8px; z-index: 10000; font-size: 1.1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3);';
+        message.textContent = `Playing Video ${videoNumber}`;
+        document.body.appendChild(message);
+        setTimeout(() => message.remove(), 2000);
+      });
+    });
+
+    brochureForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      document.querySelectorAll('.form-error').forEach(error => error.classList.remove('active'));
+
+      const name = document.getElementById('name').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const sqft = document.getElementById('sqft').value.trim();
+
+      let isValid = true;
+
+      if (!name) {
+        document.getElementById('nameError').classList.add('active');
+        isValid = false;
+      }
+
+      if (!mobile || !/^[0-9]{10}$/.test(mobile)) {
+        document.getElementById('mobileError').classList.add('active');
+        isValid = false;
+      }
+
+      if (!sqft) {
+        document.getElementById('sqftError').classList.add('active');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      if (currentRecordCount >= 999) {
+        const message = document.createElement('div');
+        message.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #d32f2f; color: white; padding: 20px 40px; border-radius: 8px; z-index: 10000; text-align: center; max-width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);';
+        message.textContent = 'Maximum limit of 999 submissions reached. Please contact support.';
+        document.body.appendChild(message);
+        setTimeout(() => message.remove(), 3000);
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      const submitBtnText = document.getElementById('submitBtnText');
+      const submitSpinner = document.getElementById('submitSpinner');
+      
+      submitBtn.disabled = true;
+      submitBtnText.style.display = 'none';
+      submitSpinner.classList.add('active');
+
+      if (window.dataSdk) {
+        const result = await window.dataSdk.create({
+          name: name,
+          mobile: mobile,
+          sqft_required: sqft,
+          submitted_at: new Date().toISOString()
+        });
+
+        submitBtn.disabled = false;
+        submitBtnText.style.display = 'inline';
+        submitSpinner.classList.remove('active');
+
+        if (result.isOk) {
+          document.getElementById('formSuccess').classList.add('active');
+          brochureForm.reset();
+          
+          const link = document.createElement('a');
+          link.href = 'data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlL1BhZ2VzL0tpZHNbMyAwIFJdL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlL1BhZ2UvTWVkaWFCb3hbMCAwIDYxMiA3OTJdL1BhcmVudCAyIDAgUi9SZXNvdXJjZXM8PD4+Pj4KZW5kb2JqCnhyZWYKMCA0CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAwMDYwIDAwMDAwIG4gCjAwMDAwMDAxMTcgMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDQvUm9vdCAxIDAgUj4+CnN0YXJ0eHJlZgoyMDMKJSVFT0Y=';
+          link.download = 'Salem-Township-Brochure.pdf';
+          link.click();
+
+          setTimeout(() => {
+            formModal.classList.remove('active');
+          }, 2000);
+        } else {
+          const message = document.createElement('div');
+          message.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #d32f2f; color: white; padding: 20px 40px; border-radius: 8px; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.3);';
+          message.textContent = 'Failed to submit form. Please try again.';
+          document.body.appendChild(message);
+          setTimeout(() => message.remove(), 3000);
+        }
+      }
+    });
+
+    initializeApp();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a31fe82d60106a8',t:'MTc2MzkxNDgyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
