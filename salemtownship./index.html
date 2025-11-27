@@ -3172,6 +3172,48 @@ input, textarea {
 
     initializeApp();
   </script>
+  <script>
+      function submitForm() {
+        event.preventDefault(); //prevent default behaviour
+
+        // 1. Get form data
+        const access_key = "c0c8151a-5fb8-43e7-8d53-6b23065d19a4";
+        const from_name = "Sphere Housing";
+        const name = document.querySelector("#name").value;
+        const email = document.querySelector("#email").value;
+        const mobile = document.querySelector("#phone").value;
+        const subject = document.querySelector("#subject").value;
+        const message = document.querySelector("#message").value;
+
+        // 2. Prepare api input
+        const formData = {
+          from_name: from_name,
+          subject: subject,
+          full_name: name,
+          email: email,
+          mobile: mobile,
+          message: message,
+          access_key: access_key,
+        };
+        console.log("message", message);
+
+        // 3. call api
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }).then((response) => {
+          console.log("response", response);
+
+          // 3.1. Show success message
+          document.querySelector("#infoMessage").innerHTML =
+            '<div> <h1 style="color:green"> Successfully Form Submitted </h1></div>';
+        });
+      }
+    </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a31fe82d60106a8',t:'MTc2MzkxNDgyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>
+
