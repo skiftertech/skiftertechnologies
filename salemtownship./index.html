@@ -564,7 +564,9 @@
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     }
-
+.form-group input {
+    width: 48%;
+}
     .about-image-wrapper::before {
       content: '';
       position: absolute;
@@ -1626,7 +1628,135 @@
       color: #666;
       margin: 0;
     }
+    .contact-form {
+  display: flex;
+  width:100%;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding:5%;
+}
 
+.butt-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group input {
+  width: 48%;
+}
+
+input, textarea {
+  padding: 10px!important;
+  margin-bottom: 10px!important;
+  border: 1px solid #ddd!important;
+  border-radius: 4px!important;
+  font-size: 16px!important;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button {
+  padding: 10px!important;
+  width:100%!important;
+  background-color: #252531!important;
+  color: white!important;
+  border: none!important;
+  border-radius: 4px!important;
+  font-size: 16px!important;
+  cursor: pointer!important;
+}
+
+button:hover {
+  background-color: #56565b;
+}
+.contact-section {
+  background-color: white;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  padding:10%;
+  align-items: center;
+  justify-content: center;
+  
+ 
+}
+
+@media only screen and (max-width : 720px){
+    
+  .contact-details{
+    flex-direction: column;
+
+  }
+
+  .top-bar{
+    font-size: 10px;
+  }
+}
+
+
+.contact-section h2 {
+  text-align: center;
+  color: #1a4d2e;
+}
+
+.contact-details {
+   
+  width:100%;
+  display: flex;
+  gap:5%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.contact-card {
+  
+  padding: 20px;
+  
+  border-radius: 8px;
+  width: 100%;
+  
+  
+ 
+}
+    
+    /* .logo{
+      width:auto;
+      height:10%;
+    }
+
+    .navbar {
+      width:100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2%;
+      gap:30%;
+      margin-right: auto;
+    }
+ .nav-content{
+  
+  display: flex;
+  
+  gap:5%;
+      align-items: center;
+      justify-content: center;
+     
+ }
+ .nav-content .a{
+
+ } */
     /* Responsive Design */
     @media (max-width: 992px) {
       .nav-menu {
@@ -2331,6 +2461,87 @@
 
    </div>
   </footer>
+    <div class="contact-section">
+         <div class="footer-header">
+     <h2 class="footer-main-heading">Enquiry Form</h2>
+   
+    </div>
+    
+      <form onsubmit="submitForm()" method="POST" class="contact-form">
+        <input
+          type="hidden"
+          name="from_name"
+          value="Sphere Housing"
+          id="from_name"
+        />
+        <input
+          type="hidden"
+          name="access_key"
+          value="c0c8151a-5fb8-43e7-8d53-6b23065d19a4"
+          id="access_key"
+        />
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Your Name"
+            name="name"
+            required
+            id="name"
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            name="email"
+            required
+            id="email"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="tel"
+            placeholder="Your Mobile Number"
+            name="phone"
+            required
+            id="phone"
+            pattern="[0-9]{10}"
+            title="Please enter a 10-digit mobile number"
+          />
+          <input
+            type="text"
+            placeholder="Subject"
+            name="subject"
+            required
+            id="subject"
+          />
+        </div>
+
+        <textarea
+          placeholder="Message"
+          name="message"
+          required
+          id="message"
+        ></textarea>
+        <div class="butt-div">
+          <!-- Honeypot Spam Protection -->
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            style="display: none"
+          />
+
+          <!-- Custom Confirmation / Success Page -->
+          <input
+            type="hidden"
+            name="redirect"
+            value="https://spherehousing.com/thanks.html"
+          />
+
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <div id="infoMessage"></div>
+    </div>
   
   
   <!-- Footer Section -->
